@@ -19,8 +19,10 @@
                     <td class="col-md-3"><?= $a['nama'] ?></td>
                     <td class="col-md-4"><?= $a['alamat'] ?></td>
                     <td class="col-md-2"><?= $a['nomor'] ?></td>
-                    <td class="col-md-1"><a href="#" class="btn btn-primary">Edit</a></td>
-                    <td class="col-md-1"><a href="#" class="btn btn-danger">Hapus</a></td>
+                    <td class="col-md-1"><a href="<?= base_url('anggota/edit/' . $a['id_anggota']); ?>" class="btn btn-primary">Edit</a></td>
+                    <td class="col-md-1"><a href="<?= base_url('anggota/delete/' . $a['id_anggota']); ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?');">Hapus</a></td>
+                    <td class="col-md-1 text-center"><a href="<?= base_url('anggota/create'); ?>" class="btn btn-success">Tambah</a></td>
+                    
                 </tr>
             <?php endforeach; ?>
         </tbody>

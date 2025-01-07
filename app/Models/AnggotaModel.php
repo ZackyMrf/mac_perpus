@@ -7,6 +7,7 @@ class AnggotaModel extends Model
     protected $table = 'anggota';
     protected $primaryKey = 'id_anggota';
     protected $useAutoIncrement = true;
+    protected $allowedFields = ['nama', 'alamat', 'nomor'];
 
     public function search($keyword)
     {
