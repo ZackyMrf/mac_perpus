@@ -28,5 +28,9 @@
         </tbody>
     </table>
     <?= $pager->links('anggota', 'anggota_pagenation'); ?>
+    <div class="text-end">
+        <a href="<?= base_url('anggota/download'); ?>" class="btn btn-secondary">Download</a>
+    </div>
+    
 </div></div></div>
-<?= $this->endSection(); ?>
+<?= $this->endSection(); ?>s

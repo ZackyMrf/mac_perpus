@@ -143,6 +143,41 @@ class Anggota extends BaseController
         session()->setFlashdata('success', "Data Berhasil di tambahkan");
         return redirect()->to('/anggota');
     }
+    
+    public function download()
+    {
+        $file = FCPATH . 'uploads/anggota.xls';
+
+        if (file_exists($file)) {
+            return $this->response->download($file, null, true);
+        }
+
+        $data = $this->AnggotaModel->findAll();
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Alamat');
+        $sheet->setCellValue('D1', 'Nomor Telepon');
+
+        $no = 1;
+        $numrow = 2;
+        foreach ($data as $key => $value) {
+            $sheet->setCellValue('A' . $numrow, $no);
+            $sheet->setCellValue('B' . $numrow, $value['nama']);
+            $sheet->setCellValue('C' . $numrow, $value['alamat']);
+            $sheet->setCellValue('D' . $numrow, $value['nomor']);
+
+            $no++;
+            $numrow++;
+        }
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save($file);
+
+        return $this->response->download($file, null, true);
+    }
 
 }
 

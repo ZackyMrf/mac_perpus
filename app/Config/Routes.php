@@ -22,3 +22,5 @@ $routes->put('/anggota/update/(:num)',"Anggota::update/$1");
 $routes->get('/anggota/tambah','Anggota::create');
 $routes->post('/anggota/save','Anggota::save');
 $routes->get('/anggota/create', 'Anggota::create');
+$routes->get('/anggota/download', 'Anggota::download');
+
